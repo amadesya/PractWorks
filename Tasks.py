@@ -1,92 +1,116 @@
-def insert_elements():
-    # Запрос существующего списка
-    existing_list = list(map(int, input("Введите элементы существующего списка через пробел: ").split()))
+# Запрос строки у пользователя
+user_input = input("Введите строку: ")
 
-    # Запрос числа элементов для вставки
-    n = int(input("Введите количество элементов для вставки: "))
+# 1. Выводим строку на экран 5 раз, не используя циклы
+print(user_input)
+print(user_input)
+print(user_input)
+print(user_input)
+print(user_input)
 
-    # Вставка элементов
-    for _ in range(n):
-        index = int(input("Введите индекс для вставки: "))
-        value = int(input("Введите значение для вставки: "))
-        # Вставляем элемент в указанный индекс
-        existing_list.insert(index, value)
+# 2. Выводим длину строки и каждый символ строки с указанием его индекса
+print(f"Длина строки: {len(user_input)}")
+for i, char in enumerate(user_input):
+    print(f"Индекс {i}: {char}")
 
-    # Выводим результат
-    print("Результат после вставки элементов:", existing_list)
+# 3. Выводим каждый второй символ строки на экран с указанием его позиции
+for i in range(1, len(user_input), 2):  # начиная с индекса 1 (второй символ)
+    print(f"Позиция {i+1}: {user_input[i]}")
 
-# Вызов функции
-insert_elements()
+# Запрос строки и двух чисел
+user_input = input("Введите строку: ")
+start_pos = int(input("Введите начальную позицию: ")) - 1  # корректируем на 0-based индекс
+end_pos = int(input("Введите конечную позицию: "))  # в Python срезы включают конец
 
-def admit_students():
-    # Примерные данные (баллы за экзамены и имена абитуриентов)
-    math_scores = [75, 85, 95, 70, 88, 76, 67, 90, 60, 77]  # баллы по математике
-    russian_scores = [80, 82, 78, 85, 91, 70, 80, 88, 65, 73]  # баллы по русскому языку
-    informatics_scores = [85, 87, 90, 76, 80, 65, 95, 70, 88, 90]  # баллы по информатике
-    names = ["Иван", "Петр", "Мария", "Анна", "Елена", "Дмитрий", "Алексей", "Светлана", "Юлия", "Олег"]  # имена абитуриентов
+# Выводим все символы в указанном диапазоне
+print(f"Символы в диапазоне: {user_input[start_pos:end_pos]}")
 
-    # Порог для зачисления (например, суммарный балл ≥ 270)
-    passing_score = 270
-    admitted_students = []
+# Запрос строки
+user_input = input("Введите строку: ")
 
-    # Перебираем всех абитуриентов и их баллы
-    for i in range(len(names)):
-        total_score = math_scores[i] + russian_scores[i] + informatics_scores[i]
-        if total_score >= passing_score:
-            admitted_students.append(f"{i + 1}: {names[i]}")  # индекс и имя абитуриента
+# Изменяем первый и последний символ на '#'
+if len(user_input) > 1:
+    user_input = "#" + user_input[1:-1] + "#"
+elif len(user_input) == 1:
+    user_input = "#"
 
-    # Выводим список зачисленных
-    print("Зачисленные студенты:")
-    for student in admitted_students:
-        print(student)
+# Выводим измененную строку
+print(f"Измененная строка: {user_input}")
 
-# Вызов функции
-admit_students()
+# Запрос строки
+user_input = input("Введите строку: ")
 
-def work_with_dict():
-    # Пример словаря
-    student_scores = {
-        "Иван": 90,
-        "Мария": 85,
-        "Петр": 88,
-        "Елена": 92,
-        "Алексей": 76
-    }
-
-    # Вывод списка ключей и значений
-    print("Ключи словаря:", list(student_scores.keys()))
-    print("Значения словаря:", list(student_scores.values()))
-
-    # Запрос ключа у пользователя
-    key = input("Введите имя абитуриента: ")
-    if key in student_scores:
-        print(f"Оценка {key}: {student_scores[key]}")
+# Проверяем, состоит ли строка только из цифр, букв или и того, и другого
+if user_input.isdigit():
+    print("Строка состоит только из цифр.")
+elif user_input.isalpha():
+    if user_input.islower():
+        print("Строка состоит только из строчных букв.")
+    elif user_input.isupper():
+        print("Строка состоит только из прописных букв.")
     else:
-        print("Абитуриент не найден.")
+        print("Строка состоит только из букв.")
+elif user_input.isalnum():
+    print("Строка состоит только из цифр и букв.")
+else:
+    print("Строка содержит символы, не относящиеся ни к цифрам, ни к буквам.")
 
-# Вызов функции
-work_with_dict()
 
-def find_region_for_city():
-    # Словарь областей и городов
-    regions = {
-        "Архангельская область": ["Архангельск", "Новодвинск", "Северодвинск", "Шенкурск", "Котлас"],
-        "Ленинградская область": ["Санкт-Петербург", "Пушкин", "Павловск"]
-    }
+# Запрос строки
+user_input = input("Введите строку: ")
 
-    # Запрос города
-    city = input("Введите название города: ")
+# Разделяем строку на подстроки по пробелу
+words = user_input.split()
 
-    # Поиск области
-    found = False
-    for region, cities in regions.items():
-        if city in cities:
-            print(f"{city} относится к области: {region}")
-            found = True
-            break
+# Объединяем слова через запятую
+result = ', '.join(words)
 
-    if not found:
-        print("Город не найден в списках областей.")
+# Выводим результат
+print(f"Результат: {result}")
 
-# Вызов функции
-find_region_for_city()
+# Запрос двух строк
+first_string = input("Введите первую строку: ")
+second_string = input("Введите вторую строку: ")
+
+# Находим количество вхождений первой строки во второй
+count = 0
+positions = []
+
+pos = second_string.find(first_string)
+while pos != -1:
+    positions.append(pos + 1)  # учитываем, что индексы с 1
+    count += 1
+    pos = second_string.find(first_string, pos + 1)
+
+# Выводим количество и позиции
+print(f"Первая строка встречается {count} раз(а). Позиции: {', '.join(map(str, positions))}")
+
+# Запрос слова у пользователя
+word = input("Введите слово: ").lower()
+
+# Проверка на палиндром
+if word == word[::-1]:
+    print("Это палиндром.")
+else:
+    print("Это не палиндром.")
+
+
+# Запрос строки
+user_input = input("Введите строку: ")
+
+# Заменяем все двойные пробелы на одинарные
+user_input = ' '.join(user_input.split())
+
+# Выводим результат
+print(f"Результат: {user_input}")
+
+
+# Запрос вопроса и ответа
+correct_answer = "Питон"  # Задайте правильный ответ
+user_answer = input("Ответьте на вопрос: ").strip().lower()
+
+# Проверка на правильность ответа
+if user_answer == correct_answer.lower():
+    print("Правильный ответ.")
+else:
+    print("Неправильный ответ.")
