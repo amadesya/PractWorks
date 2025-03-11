@@ -1,116 +1,119 @@
-# Запрос строки у пользователя
-user_input = input("Введите строку: ")
+try:
+    a = float(input("Введите число a: "))
+    b = float(input("Введите число b: "))
+    result = a / b
+    print(f"Частное: {result}")
+except ZeroDivisionError:
+    print("Ошибка! Деление на 0 невозможно.")
 
-# 1. Выводим строку на экран 5 раз, не используя циклы
-print(user_input)
-print(user_input)
-print(user_input)
-print(user_input)
-print(user_input)
+while True:
+    try:
+        a = float(input("Введите число a: "))
+        b = float(input("Введите число b: "))
+        
+        if b == 0:
+            print("Число b не может быть равно 0. Пожалуйста, введите другое число b.")
+            continue  # Запросить ввод числа b повторно
 
-# 2. Выводим длину строки и каждый символ строки с указанием его индекса
-print(f"Длина строки: {len(user_input)}")
-for i, char in enumerate(user_input):
-    print(f"Индекс {i}: {char}")
+        result = a / b
+        print(f"Частное: {result}")
+        break  # Если деление прошло успешно, выйти из цикла
+    except ZeroDivisionError:
+        print("Ошибка! Деление на 0 невозможно.")
+    finally:
+        print("Операция завершена.")
 
-# 3. Выводим каждый второй символ строки на экран с указанием его позиции
-for i in range(1, len(user_input), 2):  # начиная с индекса 1 (второй символ)
-    print(f"Позиция {i+1}: {user_input[i]}")
 
-# Запрос строки и двух чисел
-user_input = input("Введите строку: ")
-start_pos = int(input("Введите начальную позицию: ")) - 1  # корректируем на 0-based индекс
-end_pos = int(input("Введите конечную позицию: "))  # в Python срезы включают конец
+import math
 
-# Выводим все символы в указанном диапазоне
-print(f"Символы в диапазоне: {user_input[start_pos:end_pos]}")
+try:
+    x = float(input("Введите число x: "))
+    y = float(input("Введите число y: "))
+    z = float(input("Введите число z: "))
+    
+    # Проверка, что знаменатель не равен нулю
+    denominator = (x - y + z)**2
+    if denominator == 0:
+        raise ZeroDivisionError("Знаменатель не может быть равен нулю.")
+    
+    # Вычисление выражения
+    result = math.sqrt(x + y + z) / denominator
+    print(f"Результат выражения: {result}")
 
-# Запрос строки
-user_input = input("Введите строку: ")
+except ValueError:
+    print("Ошибка! Введены некорректные данные.")
+except ZeroDivisionError as e:
+    print(f"Ошибка! {e}")
 
-# Изменяем первый и последний символ на '#'
-if len(user_input) > 1:
-    user_input = "#" + user_input[1:-1] + "#"
-elif len(user_input) == 1:
-    user_input = "#"
 
-# Выводим измененную строку
-print(f"Измененная строка: {user_input}")
+import math
 
-# Запрос строки
-user_input = input("Введите строку: ")
+try:
+    x = float(input("Введите число x: "))
+    y = float(input("Введите число y: "))
+    z = float(input("Введите число z: "))
+    
+    # Проверка, что под корнем не будет отрицательного числа
+    under_sqrt = x + y + z
+    if under_sqrt < 0:
+        raise ValueError("Под корнем отрицательное число!")
+    
+    # Проверка, что знаменатель не равен нулю
+    denominator = (x - y + z)**2
+    if denominator == 0:
+        raise ZeroDivisionError("Знаменатель не может быть равен нулю.")
+    
+    # Вычисление выражения
+    result = math.sqrt(under_sqrt) / denominator
+    print(f"Результат выражения: {result}")
 
-# Проверяем, состоит ли строка только из цифр, букв или и того, и другого
-if user_input.isdigit():
-    print("Строка состоит только из цифр.")
-elif user_input.isalpha():
-    if user_input.islower():
-        print("Строка состоит только из строчных букв.")
-    elif user_input.isupper():
-        print("Строка состоит только из прописных букв.")
+except ValueError as e:
+    print(f"Ошибка: {e}")
+except ZeroDivisionError as e:
+    print(f"Ошибка: {e}")
+
+
+books = {}
+
+def add_book():
+    title = input("Введите название книги: ")
+    author = input("Введите имя автора: ")
+    books[title] = author
+    print("Книга добавлена!")
+
+def remove_book():
+    try:
+        title = input("Введите название книги для удаления: ")
+        del books[title]  # Попытка удалить книгу
+        print(f"Книга '{title}' удалена!")
+    except KeyError:
+        print("Ошибка! Книга с таким названием не найдена.")
+
+def view_books():
+    if books:
+        print("Список книг:")
+        for title, author in books.items():
+            print(f"{title} - {author}")
     else:
-        print("Строка состоит только из букв.")
-elif user_input.isalnum():
-    print("Строка состоит только из цифр и букв.")
-else:
-    print("Строка содержит символы, не относящиеся ни к цифрам, ни к буквам.")
+        print("Список книг пуст.")
 
-
-# Запрос строки
-user_input = input("Введите строку: ")
-
-# Разделяем строку на подстроки по пробелу
-words = user_input.split()
-
-# Объединяем слова через запятую
-result = ', '.join(words)
-
-# Выводим результат
-print(f"Результат: {result}")
-
-# Запрос двух строк
-first_string = input("Введите первую строку: ")
-second_string = input("Введите вторую строку: ")
-
-# Находим количество вхождений первой строки во второй
-count = 0
-positions = []
-
-pos = second_string.find(first_string)
-while pos != -1:
-    positions.append(pos + 1)  # учитываем, что индексы с 1
-    count += 1
-    pos = second_string.find(first_string, pos + 1)
-
-# Выводим количество и позиции
-print(f"Первая строка встречается {count} раз(а). Позиции: {', '.join(map(str, positions))}")
-
-# Запрос слова у пользователя
-word = input("Введите слово: ").lower()
-
-# Проверка на палиндром
-if word == word[::-1]:
-    print("Это палиндром.")
-else:
-    print("Это не палиндром.")
-
-
-# Запрос строки
-user_input = input("Введите строку: ")
-
-# Заменяем все двойные пробелы на одинарные
-user_input = ' '.join(user_input.split())
-
-# Выводим результат
-print(f"Результат: {user_input}")
-
-
-# Запрос вопроса и ответа
-correct_answer = "Питон"  # Задайте правильный ответ
-user_answer = input("Ответьте на вопрос: ").strip().lower()
-
-# Проверка на правильность ответа
-if user_answer == correct_answer.lower():
-    print("Правильный ответ.")
-else:
-    print("Неправильный ответ.")
+while True:
+    print("\nМеню:")
+    print("1. Добавить книгу")
+    print("2. Удалить книгу")
+    print("3. Просмотр списка книг")
+    print("4. Выход")
+    
+    choice = input("Выберите действие (1-4): ")
+    
+    if choice == "1":
+        add_book()
+    elif choice == "2":
+        remove_book()
+    elif choice == "3":
+        view_books()
+    elif choice == "4":
+        print("Выход из программы.")
+        break
+    else:
+        print("Некорректный выбор, попробуйте снова.")
